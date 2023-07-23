@@ -6,15 +6,19 @@ const Home = lazy(() => import('./pages/Home'))
 function App() {
 
   return (
-    <main class='min-h-screen bg-slate-800'>
-      <nav class='flex mb-4 p-4'>
-        <A class='text-slate-200' href="/">Home</A>
-      </nav>
-      <Routes>
-        <Route path="/" component={Home} />
-        <Route path="/game" component={Game} />
-      </Routes>
-    </main>
+    <>
+      <header class='bg-slate-800'>
+        <nav class='flex p-4'>
+          <A class='text-slate-200' href="/">Home</A>
+        </nav>
+      </header>
+      <main class='min-h-screen bg-slate-800'>
+        <Routes>
+          <Route path="/" component={Home} />
+          <Route path="/game" component={Game} />
+        </Routes>
+      </main>
+    </>
   )
 }
 
