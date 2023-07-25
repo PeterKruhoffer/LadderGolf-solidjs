@@ -1,20 +1,6 @@
 import { createSignal, createEffect, type Setter, type Accessor, JSXElement, Show } from "solid-js"
-import { createStore } from "solid-js/store"
 import { useNavigate } from "@solidjs/router"
-
-type GameStore = {
-  player1: {
-    name: string
-    score: number
-  }
-  player2: {
-    name: string
-    score: number
-  }
-}
-
-export const [gameStore, setGameStore] = createStore<GameStore[]>([])
-
+import { useScoreboard } from '../scoreboard'
 
 function Game() {
   const [isNameSet, setIsNameSet] = createSignal(false)
@@ -23,15 +9,16 @@ function Game() {
   const [player1Name, setPlayer1Name] = createSignal("")
   const [player2Name, setPlayer2Name] = createSignal("")
   const navigate = useNavigate()
+  const scoreBoard = useScoreboard()
 
   createEffect(() => {
     if (score1() >= 21 || score2() >= 21) {
-      setGameStore((s) =>
-        [...s, {
-          player1: { name: player1Name(), score: score1() },
-          player2: { name: player2Name(), score: score2() },
-        }]
-      )
+      scoreBoard.set((s) => [...s, {
+        player1Name: player1Name(),
+        player2Name: player2Name(),
+        player1Score: score1(),
+        player2Score: score2(),
+      }])
       return navigate("/")
     }
   })

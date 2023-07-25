@@ -3,7 +3,8 @@ import { render } from 'solid-js/web';
 import { Router } from "@solidjs/router"
 import App from './App';
 import './index.css';
-import { GameStateProvider } from './GameStateProvider';
+//import { GameStateProvider } from './GameStateProvider';
+import { ScoreboardProvider } from './scoreboard';
 
 const root = document.getElementById('root');
 
@@ -15,8 +16,8 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
 
 render(() => (
   <Router>
-    <GameStateProvider>
+    <ScoreboardProvider>
       <App />
-    </GameStateProvider>
+    </ScoreboardProvider>
   </Router>
 ), root!);

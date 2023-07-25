@@ -4,7 +4,6 @@ const Game = lazy(() => import('./pages/Game'))
 const Home = lazy(() => import('./pages/Home'))
 
 function App() {
-
   return (
     <>
       <header class='bg-slate-800'>
